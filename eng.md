@@ -1,4 +1,4 @@
-<article class="module" id="post-188056">
+
 *The following is a guest post by [Ryan Scherf][1]. Ryan found a neat way to
 give avatars kind of rough, uneven, varied edges. Kinda like they were cut out 
 with scissors by someone who wasn't very good at using scissors. What's nice is 
