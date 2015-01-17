@@ -46,7 +46,7 @@ path` с помощью (S)CSS.
 
 Вам придется писать `-webkit-clip-path`, так как это единственное, что
 поддерживается прямо сейчас, но наверное лучше дописать туда `clip-path` тоже.
-Если IE или Firefox начнут поддерживать это свойство, оно, вероятнее всего, будет
+Если IE или Firefox начнут поддерживать это свойство, оно вероятнее всего будет
 беспрефиксным.
 
 ## Обрезание контуров в двух словах
@@ -69,7 +69,8 @@ path` с помощью (S)CSS.
 
 Вот простой пример в действии:
 
-[Простой шестигранник][3]
+<p data-height="268" data-theme-id="0" data-slug-hash="haoEk" data-default-tab="result" data-user="rscherf" class='codepen'>See the Pen <a href='http://codepen.io/rscherf/pen/haoEk/'>haoEk</a> by Ryan (<a href='http://codepen.io/rscherf'>@rscherf</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ## Не столь страшна математика
 
@@ -82,7 +83,8 @@ path` с помощью (S)CSS.
 
 Вот пример, использующий 200 точек:
 
-[Окружность через полигон][4]
+<p data-height="268" data-theme-id="0" data-slug-hash="zpuBg" data-default-tab="result" data-user="rscherf" class='codepen'>See the Pen <a href='http://codepen.io/rscherf/pen/zpuBg/'>zpuBg</a> by Ryan (<a href='http://codepen.io/rscherf'>@rscherf</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ### Откуда возьмутся точки?
 
@@ -92,7 +94,7 @@ path` с помощью (S)CSS.
 формулу (использующую число Пи), с помощью которой можно сгенерировать любое
 количество точек на окружности.
 
-![Единичная окружность][Единичная окружность]Единичная окружность (из [Wikipedia][5])
+![Единичная окружность][Единичная окружность]Единичная окружность (из [Wikipedia][3])
 
 Если мы соединим наши точки, мы получим фигуру, выглядящую так:
 
@@ -148,9 +150,9 @@ path` с помощью (S)CSS.
 
 ## Собираем все вместе в различных вариациях
 
-Код, описанный выше, просто производит довольно гладкие и однородные полигоны,
+Код  описанный выше, просто производит довольно гладкие и однородные полигоны,
 так что нам надо добавить расхождения. Все что нам нужно, это просто сместить
-наши точки в различных направлениях для придания того самого эффекта, который
+наши точки  в различных направлениях для придания того самого эффекта, который
 мы хотим. Числа в переменных `$lower` и  `$upper` могут быть какими угодно, в
 зависимости от того, чего вы желаете достигнуть.
 
@@ -173,7 +175,8 @@ path` с помощью (S)CSS.
 Мы сделали это! Эскизные, уникальные аватары через CSS-свойство `clip-path:
 polygon()`:
 
-[Эскизные аватары][6]
+<p data-height="268" data-theme-id="0" data-slug-hash="pzgKt" data-default-tab="result" data-user="rscherf" class='codepen'>See the Pen <a href='http://codepen.io/rscherf/pen/pzgKt/'>pzgKt</a> by Ryan (<a href='http://codepen.io/rscherf'>@rscherf</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ## Заставляем это работать в Firefox
 
@@ -225,17 +228,17 @@ polygon()`:
 помогает разобраться  девушка под ником Amelia BR, и Крис дает ссылку на ее
 комментарий. Ниже будет приведен перевод данного комментария.*
 
-Оно не работает! Ха-ха. Прочитайте [ответ Амелии][7]:
+Оно не работает! Ха-ха. Прочитайте [ответ Амелии][4]:
 
 > Это не срабатывает, потому что вы используете JQuery. JQuery не понимает, как
 создавать элементы из пространства имен SVG, или элементы, которые могут
-находится внутри SVG. Это значит, что она создаст группу элементов, которые будут
+находится внутри SVG. Это значит что она создаст группу элементов, которые будут
 выглядеть нормально в инспекторе DOM — они имеют корректные имена тегов — но
 фактически все они будут `HTMLUnknownElement` в DOM. И так вы не сможете
 использовать их в качестве содержимого SVG.
 
 > С другой стороны, когда вы копируете эту разметку в отдельный файл, этот файл
-прочитывается парсером HTML5, который может распознать все элементы `<svg>` и
+будет прочитан парсером HTML5, который может распознать все элементы `<svg>` и
 их потомков как, ну, `SVGElements`.
 
 > У вас есть 2 варианта:
@@ -245,13 +248,14 @@ polygon()`:
 потомков). 
 
 > 2. Использовать парсер HTML5 самостоятельно через (a) создание подставного
-элемента `div`, (b) временной вставки в него полученного SVG, в свойство
-`.innerHTML`, или через jQuery-метод `.append()`, (c) выгрузки SVG из контейнера
+элемента `div`, (b) временная вставка в него полученного SVG, в свойство
+`.innerHTML`, или через jQuery-метод `.append()`, (c) выгрузка SVG из контейнера
 `div`.
 
 > Здесь я использовала 2 вариант. Это заставило `clip-path` работать в Firefox:
 
->[Codepen Амелии][8]
+<p data-height="268" data-theme-id="0" data-slug-hash="qEBxXW" data-default-tab="result" data-user="AmeliaBR" class='codepen'>See the Pen <a href='http://codepen.io/AmeliaBR/pen/qEBxXW/'>qEBxXW</a> by Amelia Bellamy-Royds (<a href='http://codepen.io/AmeliaBR'>@AmeliaBR</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 Это было таким:
 
@@ -272,12 +276,9 @@ polygon()`:
 
  [1]: http://twitter.com/ryanscherf
  [2]: http://quirky.com
- [3]: http://codepen.io/rscherf/pen/haoEk
- [4]: http://codepen.io/rscherf/pen/zpuBg
- [5]: http://en.wikipedia.org/wiki/Unit_circle
- [6]: http://codepen.io/rscherf/pen/pzgKt
- [7]: http://css-tricks.com/sketchy-avatars-css-clip-path/#comment-1586734
- [8]: http://codepen.io/AmeliaBR/pen/qEBxXW
+ [3]: http://en.wikipedia.org/wiki/Unit_circle
+ [4]: http://css-tricks.com/sketchy-avatars-css-clip-path/#comment-1586734
+
 
 [Аватары с рваными краями]: img/sketchy-avatars.png
 [Единичная окружность]: img/unit-cricle.png
