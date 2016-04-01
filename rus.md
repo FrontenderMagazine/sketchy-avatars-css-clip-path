@@ -200,31 +200,31 @@ polygon()`:
 3.  Привожу значения в соответствие формату SVG (например, без "px")
 4.  Вставляю новый `<svg>` с путем через `<clipPath>` готовым к использованию
 
-
-    $(".user").each(function(i) {
-     
-      var path = window.getComputedStyle(this, ':after').getPropertyValue('content');
-      
-      // делаем уборку
-      svgPolygonPoints = 
-        path
-          .replace(/px/g, "")
-          .replace(/polygon/, "")
-          .replace(/\(/, "")
-          .replace(/\)/, "")
-          .replace(/\;/g, "")
-          .replace(/"/g, "")
-          .replace(/\'/g, "");
-        
-      // Чтобы заставить это действительно работать, нужно создать <div>
-         и поместить это внутри, смотрите ниже.
-      var svg = $("<svg width='0' height='0'>")
-        .append("<defs><clipPath id='clip-" + (i+1) +"'><polygon points='" + svgPolygonPoints +"' /></clipPath></defs>");
-      
-      $("body").append(svg);
-        
-    });
-
+~~~
+$(".user").each(function(i) {
+ 
+  var path = window.getComputedStyle(this, ':after').getPropertyValue('content');
+  
+  // делаем уборку
+  svgPolygonPoints = 
+    path
+      .replace(/px/g, "")
+      .replace(/polygon/, "")
+      .replace(/\(/, "")
+      .replace(/\)/, "")
+      .replace(/\;/g, "")
+      .replace(/"/g, "")
+      .replace(/\'/g, "");
+    
+  // Чтобы заставить это действительно работать, нужно создать <div>
+     и поместить это внутри, смотрите ниже.
+  var svg = $("<svg width='0' height='0'>")
+    .append("<defs><clipPath id='clip-" + (i+1) +"'><polygon points='" + svgPolygonPoints +"' /></clipPath></defs>");
+  
+  $("body").append(svg);
+    
+});
+~~~
 
 *Примечание переводчика: тут Крис обнаруживает, что этот код не работает, но
 если вставить результат в новый файл HTML, картинка отрисовывается. В ситуации
