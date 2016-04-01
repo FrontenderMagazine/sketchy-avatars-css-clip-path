@@ -2,7 +2,6 @@
 
 Примечание от Криса Коера, автора блога, в котором была размещена статья:
 
-
 *Следующий текст является гостевой публикацией от [Райана Шерфа (Ryan Scherf)][1].
 Райан нашел изящный способ придать аватарам разного вида грубые, неровные
 края. Как будто их обрезал кто-то, не шибко владеющий ножницами. Что замечательно, 
@@ -15,8 +14,11 @@
 количества легкой тригонометрии и очень базовых знаний CSS-свойства `clip-path`,
 мы сможем достигнуть этого с относительной простотой и высокой производительностью.
 
-![Вот что мы будем делать][Аватары с рваными краями]Вот что мы будем делать. Обратите внимание на то, 
-что края неровные и различаются в каждом случае.
+![Иллюстрация][Аватары с рваными краями]
+
+Вот что мы будем делать. Обратите внимание на то, что края неровные 
+и различаются в каждом случае.
+
 
 ## Почему мы не используем маску?
 
@@ -35,6 +37,7 @@
 того же самого, применив те же математические вычисления для генерации `clip-
 path` с помощью (S)CSS.
 
+
 ## Что с поддержкой браузерами?
 
 Поддержка браузерами свойства `clip-path`, при использовании фигур вроде
@@ -46,6 +49,7 @@ path` с помощью (S)CSS.
 поддерживается прямо сейчас, но наверное лучше дописать туда `clip-path` тоже.
 Если IE или Firefox начнут поддерживать это свойство, оно вероятнее всего будет
 беспрефиксным.
+
 
 ## Обрезание контуров в двух словах
 
@@ -60,15 +64,15 @@ path` с помощью (S)CSS.
     /* 
       Это создаст шестигранник, в котором отсчет
       начинается с самой верхней точки */
-    
+     
     .hexagon {
       clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
     }
 
 Вот простой пример в действии:
 
-<p data-height="268" data-theme-id="0" data-slug-hash="haoEk" data-default-tab="result" data-user="rscherf" class='codepen'>See the Pen <a href='http://codepen.io/rscherf/pen/haoEk/'>haoEk</a> by Ryan (<a href='http://codepen.io/rscherf'>@rscherf</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p data-height="268" data-theme-id="0" data-slug-hash="ZWXOyE" data-default-tab="result" data-user="FMRobot" class="codepen">Посмотрите на <a href="http://codepen.io/FMRobot/pen/ZWXOyE/">CodePen</a>.</p>
+
 
 ## Не столь страшна математика
 
@@ -81,8 +85,8 @@ path` с помощью (S)CSS.
 
 Вот пример, использующий 200 точек:
 
-<p data-height="268" data-theme-id="0" data-slug-hash="zpuBg" data-default-tab="result" data-user="rscherf" class='codepen'>See the Pen <a href='http://codepen.io/rscherf/pen/zpuBg/'>zpuBg</a> by Ryan (<a href='http://codepen.io/rscherf'>@rscherf</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p data-height="268" data-theme-id="0" data-slug-hash="wGrWeY" data-default-tab="result" data-user="FMRobot" class="codepen">Посмотрите на <a href="http://codepen.io/FMRobot/pen/wGrWeY/">CodePen</a>.</p>
+
 
 ### Откуда возьмутся точки?
 
@@ -92,13 +96,14 @@ path` с помощью (S)CSS.
 формулу (использующую число Пи), с помощью которой можно сгенерировать любое
 количество точек на окружности.
 
-![Единичная окружность][Единичная окружность]Единичная окружность (из [Wikipedia][3])
+![Иллюстрация][Единичная окружность]
 
-Если мы соединим наши точки, мы получим фигуру, выглядящую так:
+Единичная окружность (из [Wikipedia][3]). Если мы соединим наши точки, мы получим фигуру, выглядящую так:
 
-![Соединяем точки!][Соединяем точки на единичной окружности]Соединяем точки!
+![Иллюстрация][Соединяем точки на единичной окружности]
 
-Все еще грубо, но немного больше походит на начерченное от руки.
+Соединяем точки! Все еще грубо, но немного больше походит на начерченное от руки.
+
 
 ### Больше точек!
 
@@ -131,10 +136,10 @@ path` с помощью (S)CSS.
 
     $w: 160px    // Ширина аватара
     $n: 60;      // Количество точек на окружности
-    
+     
     @function sketchAvatar() {
       $points: ();
-    
+     
       @for $i from 0 through $n {
         $points: append($points, ($w / 2) * (1 + cos((2 * pi() * $i / $n))) ($w / 2) * (1 + sin((2 * pi() * $i / $n))), comma);
       } 
@@ -146,6 +151,7 @@ path` с помощью (S)CSS.
 нашей фигуры, мы сгенерируем набор вершин по окружности для 60 равных
 промежутков.
 
+
 ## Собираем все вместе в различных вариациях
 
 Код  описанный выше, просто производит довольно гладкие и однородные полигоны,
@@ -155,14 +161,14 @@ path` с помощью (S)CSS.
 зависимости от того, чего вы желаете достигнуть.
 
     $w:     120px;   // Overall width
-    
+     
     @function sketchAvatar() {
       $n: 	  60;     // Number of points
       $lower: -80;    // Lower variance
       $upper: 80;     // Upper variance
-    
+     
       $points: ();
-    
+     
       @for $i from 0 through $n {
         $points: append($points, ($w / 2) * (1 + cos((2 * pi() * $i / $n))) + (rand($lower, $upper) / 100) ($w / 2) * (1 + sin((2 * pi() * $i / $n))), comma);
       } 
@@ -173,8 +179,8 @@ path` с помощью (S)CSS.
 Мы сделали это! Эскизные, уникальные аватары через CSS-свойство `clip-path:
 polygon()`:
 
-<p data-height="268" data-theme-id="0" data-slug-hash="pzgKt" data-default-tab="result" data-user="rscherf" class='codepen'>See the Pen <a href='http://codepen.io/rscherf/pen/pzgKt/'>pzgKt</a> by Ryan (<a href='http://codepen.io/rscherf'>@rscherf</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p data-height="268" data-theme-id="0" data-slug-hash="yOzJXm" data-default-tab="result" data-user="FMRobot" class="codepen">Посмотрите на <a href="http://codepen.io/FMRobot/pen/yOzJXm/">CodePen</a>.</p>
+
 
 ## Заставляем это работать в Firefox
 
@@ -194,7 +200,6 @@ polygon()`:
 3.  Привожу значения в соответствие формату SVG (например, без "px")
 4.  Вставляю новый `<svg>` с путем через `<clipPath>` готовым к использованию
 
-&nbsp;
 
     $(".user").each(function(i) {
      
@@ -252,8 +257,7 @@ polygon()`:
 
 > Здесь я использовала 2 вариант. Это заставило `clip-path` работать в Firefox:
 
-<p data-height="268" data-theme-id="0" data-slug-hash="qEBxXW" data-default-tab="result" data-user="AmeliaBR" class='codepen'>See the Pen <a href='http://codepen.io/AmeliaBR/pen/qEBxXW/'>qEBxXW</a> by Amelia Bellamy-Royds (<a href='http://codepen.io/AmeliaBR'>@AmeliaBR</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p data-height="268" data-theme-id="0" data-slug-hash="xVXOLE" data-default-tab="result" data-user="FMRobot" class="codepen">Посмотрите на <a href="http://codepen.io/FMRobot/pen/xVXOLE/">CodePen</a>.</p>
 
 Это было таким:
 
@@ -278,6 +282,6 @@ polygon()`:
  [4]: http://css-tricks.com/sketchy-avatars-css-clip-path/#comment-1586734
 
 
-[Аватары с рваными краями]: img/sketchy-avatars.png
-[Единичная окружность]: img/unit-cricle.png
-[Соединяем точки на единичной окружности]: img/path.png
+[Аватары с рваными краями]: img/sketchy-avatars.png "Аватары с рваными краями"
+[Единичная окружность]: img/unit-cricle.png "Единичная окружность"
+[Соединяем точки на единичной окружности]: img/path.png "Соединяем точки на единичной окружности"
